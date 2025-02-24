@@ -39,18 +39,24 @@ const Signup = ({navigation}: SignupScreensProps) => {
       repeatPassword.length < 1
     ) {
       setError('All fields are required');
+      console.log('Validation Error: All fields are required');
     } else if (password !== repeatPassword) {
       setError('Passwords do not match');
+      console.log('Validation Error: Passwords do not match');
     } else {
       const user = {
         email,
         password,
         name,
       };
+
+      console.log('Signup Request Data:', user); // Log request data
+
       appwrite
         .createAccount(user)
         .then((response: any) => {
           if (response) {
+            console.log('Signup Success:', response);
             setIsLoggedIn(true);
             Snackbar.show({
               text: 'Signup Success',
@@ -59,7 +65,7 @@ const Signup = ({navigation}: SignupScreensProps) => {
           }
         })
         .catch(err => {
-          console.log(err);
+          console.error('Signup Error:', err);
           setError(err.message);
         });
     }
@@ -145,15 +151,66 @@ const Signup = ({navigation}: SignupScreensProps) => {
 };
 
 export default Signup;
-
 const styles = StyleSheet.create({
-  container: {},
-  formContainer: {},
-  appName: {},
-  input: {},
-  errorText: {},
-  btn: {},
-  btnText: {},
-  loginContainer: {},
-  loginLabel: {},
+  container: {
+    flex: 1,
+    backgroundColor: '#F5F5F5',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  formContainer: {
+    width: '100%',
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 10,
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 4,
+  },
+  appName: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  input: {
+    width: '100%',
+    padding: 12,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    fontSize: 16,
+    color: '#333',
+    marginBottom: 12,
+    backgroundColor: '#FAFAFA',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 14,
+    textAlign: 'center',
+    marginBottom: 10,
+  },
+  btn: {
+    backgroundColor: '#007BFF',
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  btnText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  loginContainer: {
+    marginTop: 15,
+    alignItems: 'center',
+  },
+  loginLabel: {
+    color: '#007BFF',
+    fontWeight: 'bold',
+  },
 });

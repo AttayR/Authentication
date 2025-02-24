@@ -10,13 +10,12 @@ const Stack = createNativeStackNavigator<AuthStackParamList>();
 const AuthStack = () => {
   return (
     <Stack.Navigator
-    screenOptions={{
-      headerTitleAlign:'center',
-      headerBackVisible:false,
-    }}>
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerBackVisible: false,
+      }}>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Signup" component={Signup} />
-
     </Stack.Navigator>
   );
 };

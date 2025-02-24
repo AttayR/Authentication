@@ -34,6 +34,8 @@ const Home = () => {
           name: response.name,
           email: response.email,
         };
+        console.log('user data in home:', user);
+
         setUserData(user);
       }
     });
