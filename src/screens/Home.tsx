@@ -40,8 +40,8 @@ const Home = () => {
   }, [appwrite]);
 
   return (
-    <SafeAreaView>
-      <View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.welcomeContainer}>
         <Image
           source={{
             uri: 'https://appwrite.io/images-ee/blog/og-private-beta.png',
@@ -51,9 +51,14 @@ const Home = () => {
           }}
           resizeMode="contain"
         />
-        <Text>Build Fast. Scale Big. All in one Place.</Text>
+        <Text style={styles.message}>
+          Build Fast. Scale Big. All in one Place.
+        </Text>
         {userData && (
-          <View><Text>Name:{userData.name}</Text></View>
+          <View style={styles.userContainer}>
+            <Text style={styles.userDetails}>Name:{userData.name}</Text>
+            <Text style={styles.userDetails}>Email:{userData.email}</Text>
+          </View>
         )}
       </View>
       <FAB
@@ -70,4 +75,20 @@ const Home = () => {
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  welcomeContainer: {
+    // color: 'red'
+  },
+  userContainer: {
+    // color: 'grey',
+  },
+  userDetails: {
+    color: 'black',
+  },
+  message: {
+    fontSize: 12,
+  },
+});
